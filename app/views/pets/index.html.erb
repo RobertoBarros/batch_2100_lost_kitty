@@ -1,0 +1,21 @@
+<h1>Last Found Pets</h1>
+<p>
+  <%= link_to "Inform found Pet", new_pet_path, class: 'btn btn-primary btn-lg' %>
+</p>
+<div class="row">
+  <% @pets.each do |pet| %>
+    <div class="col-4">
+      <div class="card mt-2">
+        <div class="card-body">
+          <h5 class="card-title"><%= pet.species %></h5>
+          <p class="card-text">
+            <%= pet.description %>
+            <p>Address: <%= pet.address %></p>
+            <p>Found <%= time_ago_in_words(pet.found_at) %> ago</p>
+            <%= link_to "Found!", pet_path(pet), data: {turbo_method: 'delete', turbo_confirm: "You really found it?"}, class: 'btn btn-danger' %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
